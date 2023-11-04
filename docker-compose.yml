@@ -1,0 +1,75 @@
+version: '3'
+
+volumes:
+  reservation-mysql-data:
+
+services:
+  mysql:
+    image: mysql:8.0
+    volumes:
+      #      - ./user-reservation-api/mysqldb:/docker-entrypoint-initdb.d
+      - reservation-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: hotel-reservation
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_TCP_PORT: 3307
+#      MYSQL_HOST: 127.0.0.1
+    ports:
+      - "3307:3306"
+    expose:
+      - 3307
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
+      timeout: 20s
+      retries: 10
+    build: ./src/user-reservation-api/mysqldb
+
+  mongodatabase:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      timeout: 20s
+      retries: 10
+
+  solr:
+    image: solr:8
+    ports:
+      - "8983:8983"
+    entrypoint:
+      - "bash"
+      - "-c"
+      - "precreate-core hotels; exec solr -f"
+
+  hotel:
+    build: ./src/hotel-api
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongodatabase:
+        condition: service_started
+    ports:
+      - "8080:8080"
+
+  user-reservation:
+    build: ./src/user-reservation-api
+    depends_on:
+      mysql:
+        #        condition: service_healthy
+        condition: service_started
+    ports:
+      - "8090:8090"
+

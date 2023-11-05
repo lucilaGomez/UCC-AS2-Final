@@ -1,0 +1,19 @@
+.bienvenido {
+    position: absolute;
+    bottom: 75%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    color: white;
+    font-size: 4rem;
+    padding: 15px;
+  }
+
+  .username {
+    position: absolute;
+    bottom: 69%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    color: white;
+    font-size: 2rem;
+    padding: 15px;
+  }

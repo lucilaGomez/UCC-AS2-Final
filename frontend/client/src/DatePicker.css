@@ -1,0 +1,21 @@
+.date-container{
+    height: 105vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: rgb(61, 145, 255);
+}
+
+.hotel-container{
+    height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: rgb(61, 145, 255);
+}

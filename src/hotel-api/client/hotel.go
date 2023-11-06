@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	db "hotel-api/db"
+	"hotel-api/db"
 	"hotel-api/model"
 
 	log "github.com/sirupsen/logrus"
@@ -34,11 +34,11 @@ func init() {
 // InsertHotel inserta un nuevo hotel en la base de datos MongoDB
 func (c hotelClient) InsertHotel(hotel model.Hotel) model.Hotel {
 
-	db := db.MongoDb
+	database := db.MongoDb
 	insertHotel := hotel
 	insertHotel.Id = primitive.NewObjectID()
 
-	_, err := db.Collection("hotels").InsertOne(context.TODO(), &insertHotel)
+	_, err := database.Collection("hotels").InsertOne(context.TODO(), &insertHotel)
 
 	if err != nil {
 		fmt.Println(err)

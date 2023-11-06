@@ -5,13 +5,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var SolrClient *solr.Connection
-
 func InitSolr() {
-
-	var err error
-
-	SolrClient, err = solr.Init("http://localhost:8983/solr/hotels", 8983, "hotels")
+	_, err := solr.Init("http://localhost/solr/hotels", 8983, "hotels")
 	if err != nil {
 		log.Info("Failed to connect to Solr")
 		log.Fatal(err)

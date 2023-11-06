@@ -4,13 +4,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-
 	amqp "github.com/rabbitmq/amqp091-go"
 	log "github.com/sirupsen/logrus"
-
-	hotelService "hotel-api/service"
 	"io/ioutil"
 	"net/http"
+	"search-api/solr"
+
 	sdto "search-api/searchDto"
 )
 
@@ -20,7 +19,8 @@ var channel *amqp.Channel
 func InitQueue() {
 
 	// Configura la conexión a RabbitMQ y declara una cola.
-	conn, err := amqp.Dial("amqp://user:password@localhost:5672/")
+	conn, err := amqp.Dial("amqp://user:password@rabbitmq:5672/")
+
 	if err != nil {
 		log.Info("Failed to connect to RabbitMQ")
 		log.Fatal(err)
@@ -56,6 +56,8 @@ func InitQueue() {
 // ProcesarMensaje procesa el mensaje y envía los datos a Solr.
 func ProcesarMensaje(jsonMessage sdto.QueueMessageDto) {
 
+	solr.SolrClient.Add(jsonMessage)
+
 	// Procesar el mensaje y obtener datos en formato Solr
 	datosSolr := prepararDatosParaSolr(jsonMessage)
 
@@ -67,46 +69,42 @@ func ProcesarMensaje(jsonMessage sdto.QueueMessageDto) {
 }
 
 // prepararDatosParaSolr convierte el objeto HotelDto en un formato adecuado para Solr.
-func prepararDatosParaSolr(messageDto sdto.QueueMessageDto) interface{} {
-	hotelDto, err := hotelService.HotelService.GetHotelById(messageDto.Id)
-	if err != nil {
-		//TODO error
-	}
-
-	//TODO obtener un HotelDto desde la DB usando el ID
+func prepararDatosParaSolr(messageDto sdto.QueueMessageDto) map[string]interface{} {
 
 	// Creamos un mapa para representar un documento Solr
 	documentoSolr := make(map[string]interface{})
 
-	// Añadimos campos del objeto HotelDto al documento Solr
-	documentoSolr["id"] = hotelDto.Id
-	documentoSolr["nombre_hotel"] = hotelDto.Name
-	documentoSolr["ciudad"] = hotelDto.City
-	documentoSolr["descripcion"] = hotelDto.Description
-	documentoSolr["cantidad_habitaciones"] = hotelDto.RoomAmount
-	documentoSolr["calle"] = hotelDto.StreetName
-	documentoSolr["numero_calle"] = hotelDto.StreetNumber
-	documentoSolr["rate"] = hotelDto.Rate
-	documentoSolr["amenities"] = hotelDto.Amenities
-	documentoSolr["imagenes"] = hotelDto.Images
+	documentoSolr["id"] = messageDto.Id
+	documentoSolr["name"] = messageDto.Name
+	documentoSolr["city"] = messageDto.City
+	documentoSolr["description"] = messageDto.Description
+	documentoSolr["room_amount"] = messageDto.RoomAmount
+	documentoSolr["street_name"] = messageDto.StreetName
+	documentoSolr["street_number"] = messageDto.StreetNumber
+	documentoSolr["rate"] = messageDto.Rate
 
+	//TODO ver si hace falta amenities en solr (images no va a solr)
 	return documentoSolr
 }
 
 // EnviarDatosASolr envía los datos a Solr.
-func EnviarDatosASolr(datos interface{}) error {
+func EnviarDatosASolr(docSolr interface{}) error {
+	url := "http://localhost:8983/solr/hotels/update/json/docs?commit=true"
 
-	url := "http://localhost:8983/solr/mi_indice/update?commit=true" // Ajusta la URL según tu configuración
-
-	// Convertir los datos a formato JSON
-	jsonData, err := json.Marshal(datos)
+	//Convertir los docSolr a formato JSON
+	jsonData, err := json.Marshal(docSolr)
 	if err != nil {
+		log.Error("Error al convertir mensaje a JSON:", err)
 		return err
 	}
 
-	// Realizar una solicitud HTTP POST a Solr
-	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	client := &http.Client{}
+	resp, err := client.Do(req)
+
 	if err != nil {
+		log.Error("Error al enviar request post a Solr:", err)
 		return err
 	}
 	defer resp.Body.Close()
@@ -114,6 +112,7 @@ func EnviarDatosASolr(datos interface{}) error {
 	// Leer la respuesta de Solr
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		log.Error("Error al leer body de respuesta de Solr:", err)
 		return err
 	}
 
@@ -146,10 +145,10 @@ func Consume() {
 
 		err = json.Unmarshal(mensaje.Body, &jsonMessage)
 		if err != nil {
-			log.Error("Error al decodificar mensaje:", err)
+			log.Error("Error al decodificar mensaje de la cola:", err)
 		}
 
-		// Procesar el mensaje
 		ProcesarMensaje(jsonMessage)
 	}
+
 }

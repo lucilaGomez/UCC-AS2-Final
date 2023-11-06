@@ -17,7 +17,6 @@ func InsertHotel(c *gin.Context) {
 	// BindJSON decodifica el JSON del cuerpo de la solicitud en la estructura HotelDto.
 	var hotelDto dto.HotelDto
 	err := c.BindJSON(&hotelDto)
-
 	// Verificar errores en la decodificación del JSON.
 	if err != nil {
 		log.Error(err.Error())

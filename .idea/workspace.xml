@@ -4,11 +4,38 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83d6b03b-bd77-42d7-8ea4-2dc88720cd2d" name="Changes" comment="" />
+    <list default="true" id="83d6b03b-bd77-42d7-8ea4-2dc88720cd2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml.old" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/search-api/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/search-api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/search-api/solr/solrClient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hotel-api/app/url_mappings.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/app/url_mappings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hotel-api/client/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/client/hotel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hotel-api/controller/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/controller/hotel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hotel-api/queue/queue.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/queue/queue.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hotel-api/service/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/service/hotel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/queue/queue.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/queue/queue.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/searchDto/queueMessage.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/searchDto/queueMessage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/solr/solr.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/solr/solr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user-reservation-api/mysqldb/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-reservation-api/mysqldb/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///snap/go/10389" />
   <component name="Git.Settings">
@@ -21,12 +48,17 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2Xaz6hXnvoI6Q4zfG0xYgKMHyRK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -34,6 +66,7 @@
     "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "/home/luli/Desktop/UCC-ARQUI-SW-2/UCC-AS2-Final",
@@ -43,7 +76,9 @@
 }]]></component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -74,6 +109,9 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

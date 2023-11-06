@@ -29,6 +29,7 @@ func init() {
 // Función para insertar un hotel
 func (s *hotelService) InsertHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) {
 	var hotel model.Hotel
+	var hotelNew model.Hotel
 
 	hotel.Name = hotelDto.Name
 	hotel.Description = hotelDto.Description
@@ -49,17 +50,24 @@ func (s *hotelService) InsertHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) 
 
 	}
 
-	hotel = client.HotelClient.InsertHotel(hotel)
+	hotelNew = client.HotelClient.InsertHotel(hotel)
 
-	hotelDto.Id = hotel.Id.Hex()
+	hotelDto.Id = hotelNew.Id.Hex()
 
-	if hotel.Id.Hex() == "000000000000000000000000" {
+	if hotelNew.Id.Hex() == "000000000000000000000000" {
 		return hotelDto, errors.New("error creating hotel")
 	}
 
 	body := map[string]interface{}{
-		"Id":      hotel.Id.Hex(),
-		"Message": "create",
+		"id":            hotelNew.Id.Hex(),
+		"message":       "create",
+		"name":          hotelNew.Name,
+		"description":   hotelNew.Description,
+		"room_amount":   hotelNew.RoomAmount,
+		"city":          hotelNew.City,
+		"street_name":   hotelNew.StreetName,
+		"street_number": hotelNew.StreetNumber,
+		"rate":          hotelNew.Rate,
 	}
 
 	jsonBody, _ := json.Marshal(body)

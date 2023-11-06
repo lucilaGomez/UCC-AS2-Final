@@ -7,11 +7,13 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
+      #      - ./user-reservation-api/mysqldb:/docker-entrypoint-initdb.d
       - reservation-mysql-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: hotel-reservation
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_TCP_PORT: 3307
+#      MYSQL_HOST: 127.0.0.1
     ports:
       - "3307:3306"
     expose:
@@ -52,14 +54,6 @@ services:
       - "-c"
       - "precreate-core hotels; exec solr -f"
 
-  search:
-    build: ./src/search-api
-    depends_on:
-      solr:
-        condition: service_started
-      rabbitmq:
-        condition: service_healthy
-
   hotel:
     build: ./src/hotel-api
     depends_on:
@@ -74,8 +68,8 @@ services:
     build: ./src/user-reservation-api
     depends_on:
       mysql:
-        condition: service_healthy
+        #        condition: service_healthy
+        condition: service_started
     ports:
       - "8090:8090"
-
 

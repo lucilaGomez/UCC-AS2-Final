@@ -15,7 +15,6 @@ func InitQueue() {
 	// Inicializa la conexión con el servidor RabbitMQ y declara una cola
 
 	conn, err := amqp.Dial("amqp://user:password@rabbitmq:5672/")
-	// para establecer una conexión con el servidor RabbitMQ.
 
 	if err != nil {
 		log.Info("Failed to connect to RabbitMQ")

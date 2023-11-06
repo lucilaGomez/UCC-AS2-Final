@@ -3,6 +3,7 @@ package service
 import (
 	"encoding/json"
 	"errors"
+	log "github.com/sirupsen/logrus"
 	"hotel-api/client"
 	"hotel-api/dto"
 	"hotel-api/model"
@@ -31,6 +32,12 @@ func (s *hotelService) InsertHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) 
 	var hotel model.Hotel
 	var hotelNew model.Hotel
 
+	// TODO buscar HOTEL EN AMADEUS
+	var amadeusDTO = AmadeusService.getHotelByCity(hotelDto.City)
+	log.Info(amadeusDTO)
+
+	var idAmadeus = "el id de amadeus"
+
 	hotel.Name = hotelDto.Name
 	hotel.Description = hotelDto.Description
 	hotel.RoomAmount = hotelDto.RoomAmount
@@ -58,6 +65,12 @@ func (s *hotelService) InsertHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) 
 		return hotelDto, errors.New("error creating hotel")
 	}
 
+	// TODO ACTUALIZAR HOTEL CON EL ID DE AMADEUS
+
+	hotelNew.IdAmadeus = idAmadeus
+	hotelDto.IdAmadeus = idAmadeus
+	s.UpdateHotel(hotelDto)
+
 	body := map[string]interface{}{
 		"id":            hotelNew.Id.Hex(),
 		"message":       "create",
@@ -68,6 +81,7 @@ func (s *hotelService) InsertHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) 
 		"street_name":   hotelNew.StreetName,
 		"street_number": hotelNew.StreetNumber,
 		"rate":          hotelNew.Rate,
+		"id_amadeus":    hotelNew.IdAmadeus,
 	}
 
 	jsonBody, _ := json.Marshal(body)
@@ -191,8 +205,16 @@ func (s *hotelService) UpdateHotel(hotelDto dto.HotelDto) (dto.HotelDto, error) 
 	}
 
 	body := map[string]interface{}{
-		"id":      hotel.Id.Hex(),
-		"message": "update",
+		"id":            hotel.Id.Hex(),
+		"message":       "update",
+		"name":          hotel.Name,
+		"description":   hotel.Description,
+		"room_amount":   hotel.RoomAmount,
+		"city":          hotel.City,
+		"street_name":   hotel.StreetName,
+		"street_number": hotel.StreetNumber,
+		"rate":          hotel.Rate,
+		"id_amadeus":    hotel.IdAmadeus,
 	}
 
 	jsonBody, _ := json.Marshal(body)

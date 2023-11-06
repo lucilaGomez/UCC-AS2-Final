@@ -123,6 +123,7 @@ func (c hotelClient) UpdateHotelById(hotel model.Hotel) model.Hotel {
 			{"rate", hotel.Rate},
 			{"amenities", hotel.Amenities},
 			{"images", hotel.Images},
+			{"id_amadeus", hotel.IdAmadeus},
 		},
 	}}
 

@@ -52,13 +52,13 @@ services:
       - "-c"
       - "precreate-core hotels; exec solr -f"
 
-  search:
-    build: ./src/search-api
-    depends_on:
-      solr:
-        condition: service_started
-      rabbitmq:
-        condition: service_healthy
+#  search:
+#    build: ./src/search-api
+#    depends_on:
+#      solr:
+#        condition: service_started
+#      rabbitmq:
+#        condition: service_healthy
 
   hotel:
     build: ./src/hotel-api
@@ -70,12 +70,12 @@ services:
     ports:
       - "8080:8080"
 
-  user-reservation:
-    build: ./src/user-reservation-api
-    depends_on:
-      mysql:
-        condition: service_healthy
-    ports:
-      - "8090:8090"
+#  user-reservation:
+#    build: ./src/user-reservation-api
+#    depends_on:
+#      mysql:
+#        condition: service_healthy
+#    ports:
+#      - "8090:8090"
 
 

@@ -8,8 +8,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
-	"search-api/solr"
-
 	sdto "search-api/searchDto"
 )
 
@@ -56,7 +54,8 @@ func InitQueue() {
 // ProcesarMensaje procesa el mensaje y envía los datos a Solr.
 func ProcesarMensaje(jsonMessage sdto.QueueMessageDto) {
 
-	solr.SolrClient.Add(jsonMessage)
+	//TODO ESTA DANDO CONNECTION REFUSED SOLR
+	//solr.SolrClient.Add(jsonMessage)
 
 	// Procesar el mensaje y obtener datos en formato Solr
 	datosSolr := prepararDatosParaSolr(jsonMessage)

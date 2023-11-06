@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83d6b03b-bd77-42d7-8ea4-2dc88720cd2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/hotel-api/dto/amadeusDto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hotel-api/service/amadeus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/cache/cache.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/client/booking.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/controller/booking.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/availability.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/availability_response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/booking.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/booking_amadeus.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/booking_detail.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/booking_post.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/hotel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/login_response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/dto/post_hotel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/model/booking.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user-reservation-api/service/booking.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hotel-api/client/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/client/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hotel-api/dto/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/dto/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hotel-api/model/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/model/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hotel-api/service/hotel.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/hotel-api/service/hotel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-reservation-api/app/url_mappings.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-reservation-api/app/url_mappings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-reservation-api/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-reservation-api/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-reservation-api/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-reservation-api/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user-reservation-api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/user-reservation-api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search-api/queue/queue.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/search-api/queue/queue.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
